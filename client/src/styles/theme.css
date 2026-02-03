@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-bg-main text-text-primary font-sans;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-muted;
+  }
+}
+
+@layer components {
+  /* Simple card style */
+  .card {
+    @apply bg-white border border-border rounded-lg shadow-sm;
+  }
+
+  /* Message animations */
+  .message-enter {
+    animation: slideIn 0.2s ease-out;
+  }
+
+  /* Typing indicator */
+  .typing-dot {
+    animation: typingDot 1.4s infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typingDot {
+    0%, 60%, 100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    30% {
+      transform: translateY(-8px);
+      opacity: 1;
+    }
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-accent hover:bg-accent/90 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-secondary hover:bg-bg-tertiary text-text-primary font-medium px-4 py-2 rounded-lg transition-all duration-200 border border-border;
+  }
+
+  /* Input styles */
+  .input-primary {
+    @apply bg-white border border-border text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-200;
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply w-2 h-2 rounded-full bg-success;
+  }
+
+  .status-offline {
+    @apply w-2 h-2 rounded-full bg-text-muted;
+  }
+}
+
+/* Custom animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transitions */
+button, a, input, textarea {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #007AFF;
+  outline-offset: 2px;
+}
+/* Mobile safe areas (notches, home indicators) */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Prevent zoom on input focus on iOS */
+  input[type="text"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .md\:w-80 {
+    width: 20rem;
+  }
+}
